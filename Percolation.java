@@ -51,10 +51,7 @@ public class Percolation {
     //Checks connection to Top -- compare find(indexOfCurrntCell and find(Top)
     public boolean isFull(int row, int col) {
         checkRange(row, col);
-        // if (!isOpen(row, col)) {
-        //     System.out.println("=============The Cell is closed===============");
-        //     return false;
-        // }
+
 
         return gridMap.find(indexOf(row, col)) == gridMap.find(top);
     }

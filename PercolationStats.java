@@ -36,15 +36,15 @@ public class PercolationStats {
 
                 if(!perc2.isOpen(testY,testX))
                 {
-                    System.out.println("Try #"+i);
+                    // System.out.println("Try #"+i);
                     perc2.open(testX,testY);// here we open random cell!
                 }
                 counter++;
             }
             results[i] = (double)(perc2.numberOfOpenSites()) / (n * n);
 
-            StdOut.println("Percolates ="+perc2.percolates());
-            StdOut.println("Counter is "+counter);
+            // StdOut.println("Percolates ="+perc2.percolates());
+            // StdOut.println("Counter is "+counter);
         }
 
         mean = StdStats.mean(results);

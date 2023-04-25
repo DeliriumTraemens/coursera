@@ -30,15 +30,11 @@ public class PercolationStats {
                 testY = (int) ((StdRandom.uniformDouble() * n) + 1);
 
                 if (!percolation.isOpen(testY, testX)) {
-                    // System.out.println("Try #"+i);
-                    percolation.open(testX, testY);// here we open random cell!
+                    percolation.open(testX, testY);
                 }
                 counter++;
             }
             results[i] = (double) (percolation.numberOfOpenSites()) / (n * n);
-
-            // StdOut.println("Percolates ="+percolation.percolates());
-            // StdOut.println("Counter is "+counter);
         }
 
         mean = StdStats.mean(results);
@@ -68,15 +64,13 @@ public class PercolationStats {
     public static void main(String[] args) {
 
         int n = Integer.parseInt(args[0]);
-        // int n = 50;
         int trials = Integer.parseInt(args[1]);
-        // int trials = 20;
 
         PercolationStats stats = new PercolationStats(n, trials);
 
 
         System.out.println("Mean: " + stats.mean());
-        System.out.println("Standard deviation: " + stats.stddev());
+        System.out.println("Stddev: " + stats.stddev());
         System.out.println(
                 "95% confidence interval: [" + stats.confidenceLo() + ", " + stats.confidenceHi()
                         + "]");

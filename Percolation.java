@@ -34,7 +34,6 @@ public class Percolation {
         }
     }
 
-    // returns Number of cell in one-dimensional array
     private int indexOf(int row, int col) {
         checkRange(row, col);
         return (row - 1) * n + (col - 1);
@@ -42,15 +41,12 @@ public class Percolation {
 
     public boolean isOpen(int row, int col) {
         checkRange(row, col);
-
         return grid[indexOf(row, col)];
     }
 
-    //Checks connection to Top -- compare find(indexOfCurrntCell and find(Top)
     public boolean isFull(int row, int col) {
         checkRange(row, col);
-
-
+        if(!isOpen(row,col)) return false;
         return gridMap.find(indexOf(row, col)) == gridMap.find(top);
     }
 
@@ -62,49 +58,30 @@ public class Percolation {
         return this.openCell;
     }
 
-
     public void open(int row, int col) {
         checkRange(row, col);
-
         int currentCellIndex = indexOf(row, col);
-
         grid[currentCellIndex] = true;
         this.openCell++;
-
-
-        //Checks if the ROW number is The first -=> if so, connect it to virtualTop
         if (row == 1) {
-
             gridMap.union(currentCellIndex, top);
         }
-
-        //Checks if the Row number is the N - an amount of Rows -=> connect it to virtualBottom
         if (row == this.n) {
             gridMap.union(currentCellIndex, bottom);
         }
-
-        //Above check
         if (row > 1 && isOpen(row - 1, col)) {
             assert (currentCellIndex > n);
             gridMap.union(currentCellIndex, currentCellIndex - n);
         }
-        //Below check
         if (row < this.n && isOpen(row + 1, col)) {
             assert (currentCellIndex + n < n * n);
             gridMap.union(currentCellIndex, currentCellIndex + n);
         }
-        //Left check
         if (col > 1 && isOpen(row, col - 1)) {
             gridMap.union(currentCellIndex, currentCellIndex - 1);
         }
-        //Right check
         if (col < this.n && isOpen(row, col + 1)) {
             gridMap.union(currentCellIndex, currentCellIndex + 1);
         }
-
     }
-
-    // public static void main(String[] args) {
-    //
-    // }
 }

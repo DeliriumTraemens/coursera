@@ -13,9 +13,7 @@ public class Percolation {
 
     private final int n;
     private int openCell;
-
     private final int top;
-
     private final int bottom;
 
     public Percolation(int n) {

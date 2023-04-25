@@ -4,7 +4,6 @@
  *  Last modified:     20.04.2023
  **************************************************************************** */
 
-import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
 import edu.princeton.cs.algs4.StdStats;
 
@@ -23,23 +22,22 @@ public class PercolationStats {
         int testY;
 
         for (int i = 0; i < trials; i++) {
-            Percolation perc2 = new Percolation(n);
+            Percolation percolation = new Percolation(n);
 
             int counter = 0;
-            while (!perc2.percolates()) {
-                StdOut.println("Percolates =" + perc2.percolates());
+            while (!percolation.percolates()) {
                 testX = (int) ((StdRandom.uniformDouble() * n) + 1);
                 testY = (int) ((StdRandom.uniformDouble() * n) + 1);
 
-                if (!perc2.isOpen(testY, testX)) {
+                if (!percolation.isOpen(testY, testX)) {
                     // System.out.println("Try #"+i);
-                    perc2.open(testX, testY);// here we open random cell!
+                    percolation.open(testX, testY);// here we open random cell!
                 }
                 counter++;
             }
-            results[i] = (double) (perc2.numberOfOpenSites()) / (n * n);
+            results[i] = (double) (percolation.numberOfOpenSites()) / (n * n);
 
-            // StdOut.println("Percolates ="+perc2.percolates());
+            // StdOut.println("Percolates ="+percolation.percolates());
             // StdOut.println("Counter is "+counter);
         }
 
@@ -77,10 +75,10 @@ public class PercolationStats {
         PercolationStats stats = new PercolationStats(n, trials);
 
 
-        System.out.println("Среднее значение: " + stats.mean());
-        System.out.println("Стандартное отклонение: " + stats.stddev());
+        System.out.println("Mean: " + stats.mean());
+        System.out.println("Standard deviation: " + stats.stddev());
         System.out.println(
-                "95% доверительный интервал: [" + stats.confidenceLo() + ", " + stats.confidenceHi()
+                "95% confidence interval: [" + stats.confidenceLo() + ", " + stats.confidenceHi()
                         + "]");
     }
 }

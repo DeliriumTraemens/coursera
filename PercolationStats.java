@@ -6,6 +6,7 @@
 
 import edu.princeton.cs.algs4.StdRandom;
 import edu.princeton.cs.algs4.StdStats;
+import edu.princeton.cs.algs4.StopwatchCPU;
 
 public class PercolationStats {
 
@@ -62,7 +63,7 @@ public class PercolationStats {
     }
 
     public static void main(String[] args) {
-
+        StopwatchCPU stopWatch = new StopwatchCPU();
         int n = Integer.parseInt(args[0]);
         int trials = Integer.parseInt(args[1]);
 
@@ -74,5 +75,7 @@ public class PercolationStats {
         System.out.println(
                 "95% confidence interval: [" + stats.confidenceLo() + ", " + stats.confidenceHi()
                         + "]");
+        double stop = stopWatch.elapsedTime();
+        System.out.println(stop+" is totaltime");
     }
 }
